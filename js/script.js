@@ -43,10 +43,7 @@ let quotes = [
     source: "Benjamin Franklin",
     citation: "AZ Quotes"
   }
-
-
 ];
-
 
 /***
  * `getRandomQuote` function
@@ -54,41 +51,55 @@ let quotes = [
 
 
 function getRandomQuote (arr) {
-  const randomNum = Math.floor(Math.random() * arr.length);
-  return quotes[randomNum];
+  let randomNum = Math.floor(Math.random() * arr.length);
+  let randomQuote = arr[randomNum];
+  //console.log(randomNum);
+  //console.log(randomQuote);
+  return randomQuote;
 };
-
-console.log(getRandomQuote(quotes));
-console.log(getRandomQuote(quotes.source));
+//console.log(getRandomQuote(quotes));
+//console.log(getRandomQuote(quotes).citation);
 
 /***
  * `printQuote` function
 ***/
+
+let quote = getRandomQuote(quotes);
+//console.log(quote);
+//console.log(`${quote.source}`)
+
+
 function printQuote() {
-  let quote = `${getRandomQuote(quotes)}`;
+  var randomQuote = getRandomQuote(quotes);
   let html = `
     <p class= "quote" > ${quote.quote} </p>
-    <p class= "source" > ${quote.source}
-      if ( ${quote.citation} ) {
-        html += <span class = "citation"> ${quote.citation}; </span>
-      } 
-      if ( ${quote.year} ) {
-        html += <span class = "year"> ${quote.year} </span>
-      }
-    </p>
+    <p class= "source" > ${quote.source} 
+      
+      <span class = "source" > ${quote.year}</span>
   `
-  return html;
-}
+    if (!('citation' in quote)) {
+      
+    } else {
+`<span class = "citation"> ${quote.citation}</span>`
+    };
+    if ('year' in quotes) {
+      `<span class = "source" > ${quote.year}</span>`
+    } else {};
+    `</p>
+  `
+    return html;
+};
 
-;
+console.log(printQuote())
 
 document.getElementById('quote-box').innerHTML = printQuote();
 
-console.log(printQuote())
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
+
+
 
 //document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
