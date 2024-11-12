@@ -35,7 +35,7 @@ let quotes = [
   },
   {
     quote: "You must be the change you wish to see in the world",
-    Source: "Mahatma Gandhi",
+    source: "Mahatma Gandhi",
     citation: "AZ Quotes"
   },
   {
@@ -63,34 +63,23 @@ function getRandomQuote (arr) {
 /***
  * `printQuote` function
 ***/
-
-let quote = getRandomQuote(quotes);
-//console.log(quote);
-//console.log(`${quote.source}`)
-
+var quote = getRandomQuote(quotes);
 
 function printQuote() {
-  var randomQuote = getRandomQuote(quotes);
   let html = `
     <p class= "quote" > ${quote.quote} </p>
-    <p class= "source" > ${quote.source} 
-      
-      <span class = "source" > ${quote.year}</span>
-  `
-    if (!('citation' in quote)) {
-      
-    } else {
-`<span class = "citation"> ${quote.citation}</span>`
+    <p class= "source" > ${quote.source} `
+
+    if (quote.citation) {
+     `<span class = "citation"> ${quote.citation} </span>`
     };
-    if ('year' in quotes) {
-      `<span class = "source" > ${quote.year}</span>`
-    } else {};
-    `</p>
-  `
+    if (quote.year) {
+      `<span class = "year" > ${quote.year} </span>`
+    };
+    `</p>`
+
     return html;
 };
-
-console.log(printQuote())
 
 document.getElementById('quote-box').innerHTML = printQuote();
 
@@ -101,5 +90,5 @@ document.getElementById('quote-box').innerHTML = printQuote();
 
 
 
-//document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
