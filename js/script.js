@@ -63,32 +63,34 @@ function getRandomQuote (arr) {
 /***
  * `printQuote` function
 ***/
-var quote = getRandomQuote(quotes);
+//var quote = getRandomQuote(quotes);
+
 
 function printQuote() {
+  let quote = getRandomQuote(quotes);
+  
   let html = `
     <p class= "quote" > ${quote.quote} </p>
     <p class= "source" > ${quote.source} `
 
     if (quote.citation) {
-     `<span class = "citation"> ${quote.citation} </span>`
+      html += `<span class = "citation"> ${quote.citation} </span>`
     };
     if (quote.year) {
-      `<span class = "year" > ${quote.year} </span>`
+      html += `<span class = "year" > ${quote.year} </span>`
     };
-    `</p>`
+    `</p>`;
 
-    return html;
+//    console.log(html);
+    document.getElementById("quote-box").innerHTML = html;
 };
 
-document.getElementById('quote-box').innerHTML = printQuote();
 
+//console.log(printQuote());
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
-
-
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
